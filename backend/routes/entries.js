@@ -13,18 +13,5 @@ router.get('/', async (req, res) => {
     }
   });
   
-  router.post('/', async (req, res) => {
-    const { text, sentiment } = req.body;
-    try {
-      const result = await pool.query(
-        'INSERT INTO entries (text, sentiment) VALUES ($1, $2) RETURNING *',
-        [text, sentiment || null]
-      );
-      res.status(201).json(result.rows[0]);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
-    }
-  });
-  
+
 module.exports = router;

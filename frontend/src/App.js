@@ -14,7 +14,8 @@ function App() {
       const res = await axios.get('http://localhost:5001/entries');
       setEntries(res.data);
     } catch (err) {
-      console.error(err);
+      console.error('Error posting entry:', err.response ? err.response.data : err.message);
+      alert('Failed to add entry. Check backend console.');
     }
   };
 
